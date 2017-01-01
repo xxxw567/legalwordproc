@@ -57,7 +57,7 @@ install_r("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/m
 
 
 
-##3.Developed functions
+##4.Developed functions
 * basic functions (inputÊäÈë×Ö·û´®, findÄ¿±ê×Ö·û´®)
 1. ischinexist  
 2. findpos  
@@ -115,11 +115,12 @@ matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney))
 
 ## 5.Useful links
 
-[how to write R package](http://cos.name/2011/05/write-r-packages-like-a-ninja/)  
-[how to source file in GitHub](https://tonybreyal.wordpress.com/2011/11/24/source_https-sourcing-an-r-script-from-github/)  
-[how to download data from GitHub](https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository)  
-[inroduction of Rmarkdown](http://rmarkdown.rstudio.com/?version=0.98.1103&mode=desktop)  
-[Rmarkdown chectsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)  
+* [how to write R package](http://cos.name/2011/05/write-r-packages-like-a-ninja/)  
+* [how to source file in GitHub](https://tonybreyal.wordpress.com/2011/11/24/source_https-sourcing-an-r-script-from-github/)  
+* [how to download data from GitHub](https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository)  
+* [inroduction of Rmarkdown](http://rmarkdown.rstudio.com/?version=0.98.1103&mode=desktop)  
+* [Rmarkdown chectsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)  
+* [RStudio+Markdown+Pandoc](http://www.jianshu.com/p/a97b4a9f6d5b)
 
 
 
