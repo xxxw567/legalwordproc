@@ -145,10 +145,18 @@ $(document).ready(function () {
 <div id="developed-functions" class="section level2">
 <h2>3.Developed functions</h2>
 <ul>
-<li>Some Basic functions Check exist</li>
+<li><p>Some Basic functions</p></li>
 <li><p>cnextract<br />Extract from A to B, position A+1 to b</p></li>
-<li>Chinese words to date/number</li>
-<li><p>Convert Chinese number to Arabic Number</p></li>
+</ul>
+<pre class="r"><code>cnextract(&quot;判决有期徒刑十二年,缓刑一年&quot;,&quot;判决&quot;,&quot;,&quot;)
+&gt; 有期徒刑 十二 年</code></pre>
+<ul>
+<li>Chinese words to date/number<br />Single chinese character to number or to number of month</li>
+</ul>
+<pre class="r"><code>chinntoda(&quot;五&quot;)
+&gt;5</code></pre>
+<ul>
+<li>Convert Chinese number to Arabic Number</li>
 </ul>
 </div>
 <div id="useful-links" class="section level2">
@@ -157,18 +165,13 @@ $(document).ready(function () {
 </div>
 <div id="install-all-the-functions" class="section level2">
 <h2>5.install all the functions</h2>
-<pre class="r"><code>source_https &lt;- function(url, ...) {
-  # load package
-  require(RCurl)
- 
-  # parse and evaluate each .R script
-  sapply(c(url, ...), function(u) {
-    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file(&quot;CurlSSL&quot;, &quot;cacert.pem&quot;, package = &quot;RCurl&quot;))), envir = .GlobalEnv)
-  })
-}
+<pre class="r"><code>library(RCurl)
+
+#install the read all function in my github repostroies
+script &lt;- getURL(&quot;https://github.com/xxxw567/R-Chinese-Word-Processing/blob/master/fun_install_github.R&quot;, ssl.verifypeer = FALSE)
+eval(parse(text = script))
  
 # install all the function in my repostroies
-source_https(&quot;https://github.com/xxxw567/R-Chinese-Word-Processing/blob/master/fun_install_github.R&quot;)
 
 fun_install_github(&quot;https://github.com/xxxw567/R-Chinese-Word-Processing/tree/master/R&quot;)</code></pre>
 </div>

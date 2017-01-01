@@ -26,22 +26,49 @@ Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) pac
 * For general Chinese word processing  
 
 ##3.Developed functions
-* Some Basic functions
+## 5.install all the functions
+```{r }
+
+
+source_https <- function(url, ...) {
+  # load package
+  require(RCurl)
  
+  # parse and evaluate each .R script
+  sapply(c(url, ...), function(u) {
+    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
+  })
+}
+source_https("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/fun_install_github.R")
+
+# install all the function in my repostroies
+
+fun_install_github("https://github.com/xxxw567/R-Chinese-Word-Processing/")
+
+```
+
+
+
+
+* ischinexist
+whether a given word is existed in a Chinese string
+
+
+
 *  cnextract  
 Extract from A to B,  position A+1 to b  
 
-```{r eval = FALSE}
+```{r }
 
 cnextract("判决有期徒刑十二年,缓刑一年","判决",",")
-> 有期徒刑 十二 年
+
 
 ```
 
 * Chinese words to date/number  
-Single chinese character to number or to number of month
+Single chinese character to number or to number of month 支持小于100年,单个中文字符
 
-```{r eval = FALSE}
+```{r }
 
 chinntoda("五")
 >5
@@ -56,18 +83,5 @@ chinntoda("五")
 [how source file in GitHub](https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository)
 
 
-## 5.install all the functions
-```{r eval = FALSE}
 
-library(RCurl)
-
-#install the read all function in my github repostroies
-script <- getURL("https://github.com/xxxw567/R-Chinese-Word-Processing/blob/master/fun_install_github.R", ssl.verifypeer = FALSE)
-eval(parse(text = script))
- 
-# install all the function in my repostroies
-
-fun_install_github("https://github.com/xxxw567/R-Chinese-Word-Processing/tree/master/R")
-
-```
 

@@ -1,9 +1,20 @@
 chinntoda<-function (input) {
-  #read data in my github
-  require(RCurl)
   
-  datacorr <-read.csv(text=getURL("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/R/numtochin.csv"),
-                      header=T,fileEncoding = "GBK")
+  if(length(input)>1) stop("more than one string detected!")
+  
+  #readatain gethub
+  source_GitHubData <-function(url, sep = ",", header = TRUE)
+  {
+    require(httr)
+    request <- GET(url)
+    stop_for_status(request)
+    handle <- textConnection(content(request, as = 'text'))
+    on.exit(close(handle))
+    read.table(handle, sep = sep, header = header)
+  }
+  
+  datacorr<-source_GitHubData("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/R/numtochin_utf8.txt") 
+    
   datacorr[,1]<-as.integer(datacorr[,1])
   #check whether is NA or not even exist
   exist<-function(input){
@@ -23,3 +34,5 @@ chinntoda<-function (input) {
   else out<-input
   return(out)
   }
+
+
