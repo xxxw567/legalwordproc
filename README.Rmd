@@ -27,12 +27,27 @@ Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) pac
 
 ##3.Developed functions
 * Some Basic functions
-  Check exist
+ 
 *  cnextract  
 Extract from A to B,  position A+1 to b  
 
+```{r eval = FALSE}
 
-* Chinese words to date/number
+cnextract("判决有期徒刑十二年,缓刑一年","判决",",")
+> 有期徒刑 十二 年
+
+```
+
+* Chinese words to date/number  
+Single chinese character to number or to number of month
+
+```{r eval = FALSE}
+
+chinntoda("五")
+>5
+
+```
+
 * Convert Chinese number to Arabic Number
 
 ## 4.Useful links
