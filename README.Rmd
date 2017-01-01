@@ -1,4 +1,11 @@
 
+---
+title: "Legal document processing"
+author: "Xia YIwei, Nemo"
+date: "Sunday, January 01, 2017"
+output: html_document
+---
+
 #Chinese legal documents processing
 
 In the year 2014, the Chinese supreme people's court has release a **[document](http://www.chinacourt.org/article/detail/2013/11/id/1152212.shtml)** to collect and publish all the sentence documents made by court at each level in China.  
@@ -13,7 +20,7 @@ Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) pac
 * [Offical website](http://wenshu.court.gov.cn/)
 * [OpenLaw](http://openlaw.cn/)
 
-##2.Aim 
+##2.Aims 
 * Develop useful R functions to do the Chinese word process 
 * Package those functions into Github
 * For general Chinese word processing  
@@ -29,9 +36,16 @@ Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) pac
 *  cnextract  
 Extract from A to B,  position A+1 to b  
 ```{r }
-  include = FALSE
-  cnextract("判处有期徒刑五年,缓刑两个月","判处",",")
+  
 
 ```
 * Chinese words to date/number
 * Convert Chinese number to Arabic Number
+
+##4.Useful links
+
+[how to write R package](http://cos.name/2011/05/write-r-packages-like-a-ninja/)  
+[how source file in GitHub](https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository)
+
+>第一次写R包,无编程基础,求轻拍   
+>我敢肯定其他语言实现这些功能肯定比R方便,但咱不会不是...
