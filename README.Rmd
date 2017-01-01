@@ -30,20 +30,35 @@ Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) pac
 ```{r }
 
 
-source_https <- function(url, ...) {
-  # load package
+fun_install_github <- function (repo,username,branch){
   require(RCurl)
- 
-  # parse and evaluate each .R script
-  sapply(c(url, ...), function(u) {
-    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
-  })
+  message("\nInstalling ", repo, " R-functions from user ", username)
+  name <- paste(username, "-", repo, sep = "")
+  url <- paste("https://github.com/", username, "/", repo,
+               sep = "")
+  zip_url <- paste("https://github.com/", username,
+                   "/", repo, "/archive/", branch,".zip",sep = "")
+  print(zip_url)
+  src <- file.path(tempdir(), paste(name, ".zip", sep = ""))
+  content <- getBinaryURL(zip_url, .opts = list(followlocation = TRUE,
+                                                ssl.verifypeer = FALSE))
+  writeBin(content, src)
+  on.exit(unlink(src), add = TRUE)
+  repo_name <- basename(as.character(unzip(src, list = TRUE)$Name[1]))
+  out_path <- file.path(tempdir(), repo_name)
+  unzip(src, exdir = tempdir())
+  on.exit(unlink(out_path), add = TRUE)
+  fun.path <- dir(out_path, full.names = T,pattern="*.R")
+  for (i in 1:length(fun.path)) {
+    source(fun.path[i])
+    cat("\n Sourcing function: ", dir(out_path,pattern="*.R")[i])}
+  cat("\n")
 }
-source_https("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/fun_install_github.R")
 
-# install all the function in my repostroies
 
-fun_install_github("https://github.com/xxxw567/R-Chinese-Word-Processing/")
+
+
+fun_install_github("R-Chinese-Word-Processing","xxxw567","master")
 
 ```
 
