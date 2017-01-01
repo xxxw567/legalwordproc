@@ -3,8 +3,11 @@
 title: "Legal document processing"
 author: "Xia YIwei, Nemo"
 date: "Sunday, January 01, 2017"
-output: html_document
+output: github_document
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 #Chinese legal documents processing
 
@@ -12,7 +15,7 @@ In the year 2014, the Chinese supreme people's court has release a **[document](
 
 The goal of current R package(functions) is tried to develop some useful tools to analyzing those Chinese document.   
 
-Current R functions are based on Rwordseg](https://github.com/lijian13/Rwordseg) package made by Lijian, please install the package before make full use of the code
+Current R functions are based on [Rwordseg](https://github.com/lijian13/Rwordseg) package made by Lijian, please install the package before make full use of the code
 
 
 
