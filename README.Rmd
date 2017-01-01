@@ -1,0 +1,37 @@
+
+#Chinese legal documents processing
+
+In the year 2014, the Chinese supreme people's court has release a **[document](http://www.chinacourt.org/article/detail/2013/11/id/1152212.shtml)** to collect and publish all the sentence documents made by court at each level in China.  
+
+Some useful tools are needed to analyzing those Chinese document. Hence the aim of current R package  
+
+Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) package made by Lijian
+
+
+
+##1.Websites of legal documents
+* [Offical website](http://wenshu.court.gov.cn/)
+* [OpenLaw](http://openlaw.cn/)
+
+##2.Aim 
+* Develop useful R functions to do the Chinese word process 
+* Package those functions into Github
+* For general Chinese word processing  
+
+```{r include = FALSE}
+
+```
+
+
+##3.Developed functions
+* Some Basic functions
+  Check exist
+*  cnextract  
+Extract from A to B,  position A+1 to b  
+```{r }
+  include = FALSE
+  cnextract("判处有期徒刑五年,缓刑两个月","判处",",")
+
+```
+* Chinese words to date/number
+* Convert Chinese number to Arabic Number
