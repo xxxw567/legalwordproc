@@ -25,27 +25,34 @@ Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) pac
 * Package those functions into Github
 * For general Chinese word processing  
 
-```{r include = FALSE}
-
-```
-
-
 ##3.Developed functions
 * Some Basic functions
   Check exist
 *  cnextract  
 Extract from A to B,  position A+1 to b  
-```{r }
-  
 
-```
+
 * Chinese words to date/number
 * Convert Chinese number to Arabic Number
 
-##4.Useful links
+## 4.Useful links
 
 [how to write R package](http://cos.name/2011/05/write-r-packages-like-a-ninja/)  
 [how source file in GitHub](https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository)
 
->第一次写R包,无编程基础,求轻拍   
->我敢肯定其他语言实现这些功能肯定比R方便,但咱不会不是...
+
+## 5.install all the functions
+```{r eval = FALSE}
+
+library(RCurl)
+
+#install the read all function in my github repostroies
+script <- getURL("https://github.com/xxxw567/R-Chinese-Word-Processing/blob/master/fun_install_github.R", ssl.verifypeer = FALSE)
+eval(parse(text = script))
+ 
+# install all the function in my repostroies
+
+fun_install_github("https://github.com/xxxw567/R-Chinese-Word-Processing/tree/master/R")
+
+```
+
