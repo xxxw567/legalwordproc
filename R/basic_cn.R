@@ -83,3 +83,8 @@ cutsentence<-function(input,find=c("�⳥","Ԫ")) {
   return(re)
 }
 
+
+#check whether it is numeric or comma
+is.num_coma<-function(input){
+  any(!is.na(as.numeric(input)),input==".") 
+}

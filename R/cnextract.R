@@ -6,7 +6,7 @@ cnextract<-function (input,start,end) {
   #check the length of input
   if (length(input)!=1) stop("Multiple input detected")
   #seg
-  wordseg<-as.list(segmentCN(input,nature=TRUE,nosymbol = FALSE))
+  wordseg<-matrix(segmentCN(input,nature=TRUE,nosymbol = FALSE))
   if (sum(start %in% wordseg)) {
     startpot<- which(wordseg %in% start)[1]
     if ( sum(end %in%  wordseg)) {

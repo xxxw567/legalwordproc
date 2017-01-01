@@ -27,7 +27,7 @@ Current R package relies on [Rwordseg](https://github.com/lijian13/Rwordseg) pac
 
 ##3.Developed functions
 ## 5.install all the functions
-```{r }
+```{r eval=TRUE}
 
 install_r<-function(site,pkg){
   #source R function
@@ -48,7 +48,7 @@ install_r<-function(site,pkg){
 }
 
 
-install_r("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/R/",c("chinntoda.R","cnextract.R"))
+install_r("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/R/",c("chinntoda.R","cnextract.R","basic_cn.R"))
 
 ```
 
@@ -84,6 +84,33 @@ chinntoda("one")
 ```
 
 * Convert Chinese number to Arabic Number
+> 这个有点难,其实交给其他软件做更好
+
+```{r}
+
+
+a<-"181208900.00"
+b<-"三十万"
+c<-"45万"
+d<-"5.9万"
+e<-"三千余"
+f<-"6万余"
+g<-"3百万"
+h<-"310万"
+i<-"300000余"
+j<-"3.98万"
+k<-"九万"
+l<-"壹佰万"
+m<-"三十三万"
+n<-"三百三十三万"
+o<-"三千三百三十三万"
+p<-"三千三百三十三万四千五百二十九"
+r<-"万叁仟"
+
+sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney)
+
+```
+
 
 ## 4.Useful links
 
