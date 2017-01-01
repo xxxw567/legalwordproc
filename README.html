@@ -144,36 +144,93 @@ $(document).ready(function () {
 </div>
 <div id="developed-functions" class="section level2">
 <h2>3.Developed functions</h2>
-<ul>
-<li><p>Some Basic functions</p></li>
-<li><p>cnextract<br />Extract from A to B, position A+1 to b</p></li>
-</ul>
-<pre class="r"><code>cnextract(&quot;判决有期徒刑十二年,缓刑一年&quot;,&quot;判决&quot;,&quot;,&quot;)
-&gt; 有期徒刑 十二 年</code></pre>
-<ul>
-<li>Chinese words to date/number<br />Single chinese character to number or to number of month</li>
-</ul>
-<pre class="r"><code>chinntoda(&quot;五&quot;)
-&gt;5</code></pre>
-<ul>
-<li>Convert Chinese number to Arabic Number</li>
-</ul>
-</div>
-<div id="useful-links" class="section level2">
-<h2>4.Useful links</h2>
-<p><a href="http://cos.name/2011/05/write-r-packages-like-a-ninja/">how to write R package</a><br /><a href="https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository">how source file in GitHub</a></p>
 </div>
 <div id="install-all-the-functions" class="section level2">
-<h2>5.install all the functions</h2>
-<pre class="r"><code>library(RCurl)
-
-#install the read all function in my github repostroies
-script &lt;- getURL(&quot;https://github.com/xxxw567/R-Chinese-Word-Processing/blob/master/fun_install_github.R&quot;, ssl.verifypeer = FALSE)
-eval(parse(text = script))
+<h2>4.install all the functions</h2>
+<pre class="r"><code>install_r&lt;-function(site,pkg){
+  #source R function
+  source_https &lt;- function(url, ...) {
+  # load package
+  require(RCurl)
  
-# install all the function in my repostroies
+  # parse and evaluate each .R script
+  sapply(c(url, ...), function(u) {
+    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file(&quot;CurlSSL&quot;, &quot;cacert.pem&quot;, package = &quot;RCurl&quot;))), envir = .GlobalEnv)
+  })
+}
+  
+  #read all the function
+  for(i in 1:length(pkg)) {
+  source_https(paste0(site,pkg))  
+  }
+}
 
-fun_install_github(&quot;https://github.com/xxxw567/R-Chinese-Word-Processing/tree/master/R&quot;)</code></pre>
+
+install_r(&quot;https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/R/&quot;,c(&quot;chinntoda.R&quot;,&quot;cnextract.R&quot;,&quot;basic_cn.R&quot;,&quot;codemoney.R&quot;))</code></pre>
+<ul>
+<li>basic funcs (input输入字符串, find目标字符串)</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>ischinexist<br /></li>
+<li>findpos<br /></li>
+<li>cutsentence</li>
+</ol>
+<ul>
+<li>cnextract<br />Extract from A to B, position A+1 to b</li>
+</ul>
+<pre class="r"><code>cnextract(&quot;判处有期徒刑十二年,缓刑一年&quot;,&quot;判处&quot;,&quot;,&quot;)</code></pre>
+<pre><code>## [1] &quot;有期徒刑&quot; &quot;十二年&quot;   &quot;,&quot;</code></pre>
+<ul>
+<li>Chinese words to date/number<br />Single chinese character to number or to number of month 支持小于100年,单个中文字符,如果非中文,返回原始值</li>
+</ul>
+<pre class="r"><code>chinntoda(&quot;五&quot;)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>chinntoda(&quot;一年&quot;)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code>chinntoda(&quot;one&quot;)</code></pre>
+<pre><code>## [1] &quot;one&quot;</code></pre>
+<ul>
+<li>Convert Chinese number to Arabic Number<br />&gt; 这个有点难,其实交给其他软件做更好</li>
+</ul>
+<pre class="r"><code>a&lt;-&quot;181208900.00&quot;
+b&lt;-&quot;三十万&quot;
+c&lt;-&quot;45万&quot;
+d&lt;-&quot;5.9万&quot;
+e&lt;-&quot;三千余&quot;
+f&lt;-&quot;6万余&quot;
+g&lt;-&quot;3百万&quot;
+h&lt;-&quot;310万&quot;
+i&lt;-&quot;300000余&quot;
+j&lt;-&quot;3.98万&quot;
+k&lt;-&quot;九万&quot;
+l&lt;-&quot;壹佰万&quot;
+m&lt;-&quot;三十三万&quot;
+n&lt;-&quot;三百三十三万&quot;
+o&lt;-&quot;三千三百三十三万&quot;
+p&lt;-&quot;三千三百三十三万四千五百二十九&quot;
+
+matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney))</code></pre>
+<pre><code>##            [,1]
+##  [1,] 181208900
+##  [2,]    300000
+##  [3,]    450000
+##  [4,]     59000
+##  [5,]      3000
+##  [6,]     60000
+##  [7,]   3000000
+##  [8,]   3100000
+##  [9,]    300000
+## [10,]     39800
+## [11,]     90000
+## [12,]   1000000
+## [13,]    330000
+## [14,]   3330000
+## [15,]  33330000
+## [16,]  33334529</code></pre>
+</div>
+<div id="useful-links" class="section level2">
+<h2>5.Useful links</h2>
+<p><a href="http://cos.name/2011/05/write-r-packages-like-a-ninja/">how to write R package</a><br /><a href="https://tonybreyal.wordpress.com/2011/11/24/source_https-sourcing-an-r-script-from-github/">how to source file in GitHub</a><br /><a href="https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository">how to download data from GitHub</a><br /><a href="http://rmarkdown.rstudio.com/?version=0.98.1103&amp;mode=desktop">inroduction of Rmarkdown</a><br /><a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">Rmarkdown chectsheet</a></p>
 </div>
 </div>
 
