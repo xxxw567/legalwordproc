@@ -24,8 +24,8 @@ Current R package depends on [Rwordseg](https://github.com/lijian13/Rwordseg) pa
 -   Develop a useful R package process the Chinese characters in Legal documents
 -   Other types of Chinese documents
 
-3.install all the functions
----------------------------
+3.Install this package
+----------------------
 
 ``` r
 library(devtools)
@@ -36,14 +36,25 @@ library(legalwordproc)
 4.Developed functions
 ---------------------
 
--   basic functions (input输入字符串, find目标字符串)
+See the ?functions for more details
 
-1.  ischinexist
-2.  findpos
-3.  cutsentence
-
+-   chinntoda
+    Translate a single Chinse Date or Chinese number into Arabic number
 -   cnextract
-    Extract from A to B, position A+1 to b
+    Cut a chinese sentence based on a given start and end
+-   codemoney
+    Translate Chinese number into Arabic number
+-   cutsentence
+    Cut the Chinese sentences by given characters
+-   findpos
+    Find the position of a certain Chinese word.
+-   is.num\_coma
+    Detech whether a given chinese word is numeric or "." \* ischinexist
+    Check whether a certain word is exist.
+
+### Some examples
+
+-   Cut a chinese sentence based on a given start and end
 
 ``` r
 cnextract("判处有期徒刑十二年,缓刑一年","判处",",")
@@ -52,7 +63,6 @@ cnextract("判处有期徒刑十二年,缓刑一年","判处",",")
     ## [1] "有期徒刑" "十二年"   ","
 
 -   Chinese words to date/number
-    Single Chinese character to number or to number of month 支持小于100年,单个中文字符,如果非中文,返回原始值
 
 ``` r
 chinntoda("五")
@@ -113,6 +123,43 @@ matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney))
     ## [14,]   3330000
     ## [15,]  33330000
     ## [16,]  33334529
+
+-   Cut the Chinese sentences by given characters
+
+``` r
+cutsentence ("本院认为，被告人王兴玖、梅潋耀身为安全管理人员，在生产作业中违反安全管理规定，不认真履行职责、发生重大安全事故，致一人死亡，其行为均已构成重大责任事故罪。公诉机关指控的事实、罪名成立，予以确认。",c("，","。"))
+```
+
+    ## [[1]]
+    ## [1] "本"   "院"   "认为" "，"  
+    ## 
+    ## [[2]]
+    ##  [1] "，"     "被告人" "王"     "兴"     "玖"     "、"     "梅"    
+    ##  [8] "潋"     "耀"     "身"     "为"     "安全"   "管理"   "人员"  
+    ## [15] "，"    
+    ## 
+    ## [[3]]
+    ##  [1] "，"   "在"   "生产" "作业" "中"   "违反" "安全" "管理" "规定" "，"  
+    ## 
+    ## [[4]]
+    ##  [1] "，"   "不"   "认真" "履行" "职责" "、"   "发生" "重大" "安全" "事故"
+    ## [11] "，"  
+    ## 
+    ## [[5]]
+    ## [1] "，"   "致"   "一"   "人"   "死亡" "，"  
+    ## 
+    ## [[6]]
+    ##  [1] "，"       "其"       "行为"     "均"       "已"       "构成"    
+    ##  [7] "重大"     "责任事故" "罪"       "。"      
+    ## 
+    ## [[7]]
+    ##  [1] "。"   "公诉" "机关" "指控" "的"   "事实" "、"   "罪名" "成立" "，"  
+    ## 
+    ## [[8]]
+    ## [1] "，"   "予以" "确认" "。"  
+    ## 
+    ## [[9]]
+    ## [1] "。"
 
 5.Useful links
 --------------

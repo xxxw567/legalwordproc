@@ -28,7 +28,7 @@ Current R package depends on [Rwordseg](https://github.com/lijian13/Rwordseg) pa
 * Other types of Chinese documents
 
 
-## 3.install all the functions
+## 3.Install this package
 ```{r eval=TRUE, message = FALSE,warning = FALSE}
 library(devtools)
 install_github("xxxw567/legalwordproc")
@@ -38,15 +38,25 @@ library(legalwordproc)
 
 
 ##4.Developed functions
-* basic functions (input输入字符串, find目标字符串)
-1. ischinexist  
-2. findpos  
-3. cutsentence  
 
+See the ?functions for more details
 
-*  cnextract  
-Extract from A to B,  position A+1 to b  
+* chinntoda	  
+Translate a single Chinse Date or Chinese number into Arabic number  
+* cnextract	  
+Cut a chinese sentence based on a given start and end  
+* codemoney	  
+Translate Chinese number into Arabic number
+* cutsentence	  
+Cut the Chinese sentences by given characters  
+* findpos	  
+Find the position of a certain Chinese word.
+* is.num_coma	  
+Detech whether a given chinese word is numeric or "."   * ischinexist  	 
+Check whether a certain word is exist.  
 
+### Some examples
+* Cut a chinese sentence based on a given start and end 
 ```{r eval=TRUE, message = FALSE,warning = FALSE}
 
 cnextract("判处有期徒刑十二年,缓刑一年","判处",",")
@@ -55,7 +65,6 @@ cnextract("判处有期徒刑十二年,缓刑一年","判处",",")
 ```
 
 * Chinese words to date/number  
-Single Chinese character to number or to number of month 支持小于100年,单个中文字符,如果非中文,返回原始值  
 
 ```{r eval=TRUE, message = FALSE,warning = FALSE}
 
@@ -66,7 +75,7 @@ chinntoda("one")
 ```
 
 * Convert Chinese number to Arabic Number  
-> 这个有点难,其实交给其他软件做更好
+>  这个有点难,其实交给其他软件做更好
 
 ```{r eval=TRUE, message = FALSE,warning = FALSE}
 
@@ -92,6 +101,13 @@ matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney))
 
 ```
 
+* Cut the Chinese sentences by given characters  
+```{r eval=TRUE, message = FALSE,warning = FALSE}
+
+cutsentence ("本院认为，被告人王兴玖、梅潋耀身为安全管理人员，在生产作业中违反安全管理规定，不认真履行职责、发生重大安全事故，致一人死亡，其行为均已构成重大责任事故罪。公诉机关指控的事实、罪名成立，予以确认。",c("，","。"))
+
+
+```
 
 ## 5.Useful links
 
