@@ -21,3 +21,9 @@ library(devtools)
 install_github("xxxw567/legalwordproc")
 
 library(legalwordproc)
+
+############################
+library(readr)
+rdada <- read.table("~/Documents/GitHub/legalwordproc/data/rdada.txt",sep = ",",header = TRUE,fileEncoding = "UTF-8")
+View(rdada)
+
