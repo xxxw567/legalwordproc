@@ -111,10 +111,10 @@ chinntoda<-function (input) {
     stop_for_status(request)
     handle <- textConnection(content(request, as = 'text'))
     on.exit(close(handle))
-    read.table(handle, sep = sep, header = header)
+    read.table(handle, sep = sep, header = header,fileEncoding = "UTF-8")
   }
 
-  datacorr<-source_GitHubData("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/data/numtochin_utf8.txt")
+  datacorr<-source_GitHubData("https://raw.githubusercontent.com/xxxw567/legalwordproc/master/data/rdada.txt")
 
   datacorr[,1]<-as.integer(datacorr[,1])
   #check whether is NA or not even exist
