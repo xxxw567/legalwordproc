@@ -23,4 +23,3 @@ install_github("xxxw567/legalwordproc")
 library(legalwordproc)
 
 ############################
-rdata <- read.table("~/Documents/GitHub/legalwordproc/data/rdata.txt",fileEncoding='UTF-8')

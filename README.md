@@ -10,7 +10,7 @@ In the year 2014, the Chinese supreme people's court has release a **[document](
 
 The goal of current R package(functions) is tried to develop some useful tools to analyzing those Chinese document.
 
-Current R functions are based on [Rwordseg](https://github.com/lijian13/Rwordseg) package made by Lijian, please install the package before make full use of the code
+Current R package depends on [Rwordseg](https://github.com/lijian13/Rwordseg) package made by Lijian, please install the package before make full use of the current package.
 
 1.Websites of legal documents
 -----------------------------
@@ -21,34 +21,16 @@ Current R functions are based on [Rwordseg](https://github.com/lijian13/Rwordseg
 2.Aims
 ------
 
--   Develop useful R functions process the Chinese characters in Legal documents
--   Make a Package once finished
+-   Develop a useful R package process the Chinese characters in Legal documents
 -   Other types of Chinese documents
 
 3.install all the functions
 ---------------------------
 
 ``` r
-install_r<-function(site,pkg){
-  #source R function
-  source_https <- function(url, ...) {
-  # load package
-  require(RCurl)
- 
-  # parse and evaluate each .R script
-  sapply(c(url, ...), function(u) {
-    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
-  })
-}
-  
-  #read all the function
-  for(i in 1:length(pkg)) {
-  source_https(paste0(site,pkg))  
-  }
-}
-
-
-install_r("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/R/",c("chinntoda.R","cnextract.R","basic_cn.R","codemoney.R"))
+library(devtools)
+install_github("xxxw567/legalwordproc")
+library(legalwordproc)
 ```
 
 4.Developed functions
@@ -91,7 +73,7 @@ chinntoda("one")
     ## [1] "one"
 
 -   Convert Chinese number to Arabic Number
-    \> 这个有点难,其实交给其他软件做更好
+    &gt; 这个有点难,其实交给其他软件做更好
 
 ``` r
 a<-"181208900.00"
@@ -135,8 +117,12 @@ matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney))
 5.Useful links
 --------------
 
--   [how to write R package](http://cos.name/2011/05/write-r-packages-like-a-ninja/)
 -   [how to source file in GitHub](https://tonybreyal.wordpress.com/2011/11/24/source_https-sourcing-an-r-script-from-github/)
 -   [how to download data from GitHub](https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository)
 -   [inroduction of Rmarkdown](http://rmarkdown.rstudio.com/?version=0.98.1103&mode=desktop)
 -   [Rmarkdown chectsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+-   [RStudio+Markdown+Pandoc](http://www.jianshu.com/p/a97b4a9f6d5b)
+
+-   [how to write R package](http://cos.name/2011/05/write-r-packages-like-a-ninja/)
+-   [write R package1\_2013](http://blog.fens.me/r-package-faster/)
+-   [write R package2\_2013](http://blog.fens.me/r-build-package/)
