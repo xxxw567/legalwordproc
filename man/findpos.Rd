@@ -6,14 +6,22 @@
 \usage{
 findpos(input, find)
 }
+\arguments{
+\item{input}{input chinese sentences}
+
+\item{find}{find with Chinese words}
+}
 \value{
-Ture/False
+Reture number indicate the position of Chinese word, NA if not find
 }
 \description{
 Find the position of a certain Chinese word.
 }
 \examples{
 
+}
+\author{
+Xia Yiwei
 }
 \keyword{basic}
 

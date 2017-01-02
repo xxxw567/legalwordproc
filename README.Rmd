@@ -24,35 +24,14 @@ Current R functions are based on [Rwordseg](https://github.com/lijian13/Rwordseg
 * [OpenLaw](http://openlaw.cn/)
 
 ##2.Aims 
-* Develop useful R functions process the Chinese characters in Legal documents
-* Make a Package once finished
+* Develop a useful R package process the Chinese characters in Legal documents
 * Other types of Chinese documents
 
 
 ## 3.install all the functions
 ```{r eval=TRUE, message = FALSE,warning = FALSE}
-
-install_r<-function(site,pkg){
-  #source R function
-  source_https <- function(url, ...) {
-  # load package
-  require(RCurl)
- 
-  # parse and evaluate each .R script
-  sapply(c(url, ...), function(u) {
-    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
-  })
-}
-  
-  #read all the function
-  for(i in 1:length(pkg)) {
-  source_https(paste0(site,pkg))  
-  }
-}
-
-
-install_r("https://raw.githubusercontent.com/xxxw567/R-Chinese-Word-Processing/master/R/",c("chinntoda.R","cnextract.R","basic_cn.R","codemoney.R"))
-
+library(devtools)
+install_github("xxxw567/legalwordproc")
 ```
 
 

@@ -6,8 +6,6 @@ library(testthat)
 # cd c:/Users/xiayi_000/Documents/GitHub/
 #   R CMD INSTALL legalwordproc
 
-
-
 #Gen helpfile
 site<-"c:/Users/xiayi_000/Documents/GitHub/legalwordproc"
 roxygenize(site)
@@ -17,3 +15,9 @@ document(site)
 
 #check
 check(site)
+
+##########################install
+library(devtools)
+install_github("xxxw567/legalwordproc")
+
+library(legalwordproc)

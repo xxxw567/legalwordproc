@@ -1,8 +1,9 @@
 #' Check whether a certain word is exist.
-#' @param input
-#' @param find
-#' @return Ture/False
+#' @param input input chinese sentences 
+#' @param find find with Chinese words
+#' @return Reture Ture/False
 #' @keywords basic
+#' @author Xia Yiwei
 #' @export
 #' @examples
 #'
@@ -21,13 +22,15 @@ ischinexist<-function(input,find){
 }
 
 #' Find the position of a certain Chinese word.
-#' @param input
-#' @param find
-#' @return Ture/False
+#' @param input input chinese sentences 
+#' @param find find with Chinese words
+#' @return Reture number indicate the position of Chinese word, NA if not find
 #' @keywords basic
+#' @author Xia Yiwei
 #' @export
 #' @examples
 #'
+
 
 findpos<-function(input,find) {
   #load package
@@ -41,7 +44,15 @@ findpos<-function(input,find) {
   return(pos)
 }
 
-
+#' Cut the Chinese sentences by given characters.
+#' @param input input chinese sentences 
+#' @param find  cut by which 
+#' @return as list 
+#' @keywords basic
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
 cutsentence<-function(input,find) {
   #load package
   library(Rwordseg)
@@ -68,37 +79,26 @@ cutsentence<-function(input,find) {
 }
 
 
-
-cutsentence<-function(input,find) {
-  #load package
-  library(Rwordseg)
-  insertWords(find)
-  #do
-  pos<-findpos(input,find)
-  if (length(pos)==0) re<-NA
-  else {
-    nsplit<-length(pos)+1
-    temp<-matrix(segmentCN(as.character(input),nature=TRUE,nosymbol = FALSE))
-    n<-nrow(temp)
-    re<-list()
-    for(i in 1:nsplit) {
-      if (i==1) startpot<-1
-      else startpot<-pos[i-1]
-      if (i==nsplit) endpot<-n
-      else endpot<-pos[i]
-      re[[i]]<-temp[startpot:endpot,]
-    }
-  }
-  #end
-  deleteWords(find)
-  return(re)
-}
-
-
+#' Detech whether a given chinese word is numeric or "."
+#' @param input input chinese sentences 
+#' @return TRUE or FALSE 
+#' @keywords basic
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
 is.num_coma<-function(input){
   any(!is.na(as.numeric(input)),input==".")
 }
 
+#' Translate a single Chinse Date or Chinese number into Arabic number
+#' @param input input chinese sentences 
+#' @return numeric
+#' @keywords ADV
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
 chinntoda<-function (input) {
 
   if(length(input)>1) stop("more than one string detected!")
@@ -136,7 +136,16 @@ chinntoda<-function (input) {
   return(out)
 }
 
-
+#' Cut a chinese sentence based on a given start and end
+#' @param input input chinese sentences 
+#' @param start starting words 
+#' @param end ending words
+#' @return list
+#' @keywords ADV
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
 cnextract<-function (input,start,end) {
   #load package
   library(Rwordseg)
@@ -164,6 +173,14 @@ cnextract<-function (input,start,end) {
 }
 
 
+#' Translate Chinese number into Arabic number
+#' @param input formatted Chinese numer
+#' @return numeric
+#' @keywords ADV
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
 codemoney<-function(input) {
   options(warn=-1)
 
