@@ -102,8 +102,10 @@ m<-"三十三万"
 n<-"三百三十三万"
 o<-"三千三百三十三万"
 p<-"三千三百三十三万四千五百二十九"
+q<-"五点九万"
+r<-"五千零三万"
 
-matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney))
+matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r),codemoney))
 ```
 
     ##            [,1]
@@ -123,6 +125,8 @@ matrix(sapply(c(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p),codemoney))
     ## [14,]   3330000
     ## [15,]  33330000
     ## [16,]  33334529
+    ## [17,]     59000
+    ## [18,]  50030000
 
 -   Cut the Chinese sentences by given characters
 

@@ -257,8 +257,8 @@ codemoney<-function(input) {
   else num<-integer(0)
   #code chinese
   if (exist(chin)) {
-    for (i in 1:length(chin)){
-      chinn[i]<-chinntoda(chin[i])
+    for (i in 1:nchar(paste(chin,collapse=""))){
+      chinn[i]<-chinntoda(substr(paste(chin,collapse=""),i,i))
     }
     temp<-sapply(chinn,is.num_coma)
     chinn<-as.numeric(chinn[temp==TRUE])
