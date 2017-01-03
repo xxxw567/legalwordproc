@@ -1,7 +1,7 @@
 Package: legalwordproc
 Type: Package
 Title: Chinese Legal Document Word Processing
-Version: 0.1.0
+Version: 0.2.0
 Date: 2017-1-2
 Author: Xia Yiwei 
 Maintainer: Xia Yiwei <Xiayiweinemo@gmail.com>

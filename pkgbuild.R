@@ -23,3 +23,11 @@ install_github("xxxw567/legalwordproc")
 library(legalwordproc)
 
 ############################
+#recode
+# ap<-c(0,stri_escape_unicode("零"))
+# datacorr<-rbind(datacorr,ap)
+# save(datacorr,file="data/datacorr.rda",compress=TRUE)
+# datacorr$chin<-stri_unescape_unicode(datacorr$chin)
+# datacorr$chin<-stri_escape_unicode(datacorr$chin)
+
+

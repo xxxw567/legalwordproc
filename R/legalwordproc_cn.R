@@ -106,7 +106,7 @@ chinntoda<-function (input) {
   #readatain gethub
   library("stringi")
   datacorr$chin<-stri_unescape_unicode(datacorr$chin)
-  datacorr[,1]<-as.integer(datacorr[,1])
+  datacorr[,1]<-as.numeric(datacorr[,1])
   #check whether is NA or not even exist
   exist<-function(input){
     if( any(length(input)==0 , is.na(input))) re<-FALSE
@@ -163,7 +163,8 @@ cnextract<-function (input,start,end) {
 }
 
 
-#' Translate Chinese number into Arabic number
+#' Translate Chinese number into Arabic number 2nd version
+#' Use recursive method
 #' @param input formatted Chinese numer
 #' @return numeric
 #' @keywords ADV
@@ -180,18 +181,29 @@ codemoney<-function(input) {
     else re<-TRUE
     return(re)
   }
-  #within
-  calculate_num<-function(input=chinn){
-    input <- input[!is.na(input)]
-    if (input==0) return(0)
-    else {
-      pos<-which(input%%10==0)
+  #define sumit
+  sumit<-function(input) {
+    #define split function
+    splitat <- function(x, pos,ret=1) {
+      out<-list()
+      if (length(x)==1) {out[[1]]=1;out[[2]]<-ret}
+      else if(pos==1)   {out[[1]]=1;out[[2]]<-x[2:length(x)]}
+      else if (pos==length(x))  {out[[1]]=x[1:(pos-1)];out[[2]]<-ret}
+      else {
+        out[[1]]<-x[1:(pos-1)]
+        out[[2]]<-x[(pos+1):length(x)]
+      }
+      return(out)
+    }
+
+    #define inner sum
+    innersum<-function(input){
+      pos<-which(input%%10==0 )
       if (length(pos)==0) res<-input
       else {
         re<-list()
         if( max(which(input%%10==0))==length(input)) loopn<-length(pos)
         else loopn<-length(pos)+1
-
         for(i in 1:loopn) {
           if (i==1) startpot<-1
           else startpot<-pos[i-1]+1
@@ -201,36 +213,34 @@ codemoney<-function(input) {
           else re[[i]]<-input[endpot]
         }
         res<-sum(sapply(re,prod,na.rm = TRUE))
+        return(res)
       }
-      return(res)
     }
-  }
-
-  #sum seperated by WAN
-  fenwansum<-function(input) {
-    poswan<-which(input==10000)
-    if (length(poswan)==0) return(calculate_num(input))
-    else {
-      wanqian<-vector()
-      wanhou<-vector()
-      if (poswan==1) {
-        wanqian<-1
-        wanhou<-input[2:length(input)]
-      }
-      else if (poswan==length(input)) {
-        wanqian<-input[1:(poswan-1)]
-        wanhou<-0
-      }
+    #calcualte_sum
+    calculate_num<-function(input){
+      input <- input[!is.na(input)]
+      if (input==0) return(0)
       else {
-        wanqian<-input[1:(poswan-1)]
-        wanhou<-input[(poswan+1):length(input)]
+        if (0.1 %in% input) {
+          out<-splitat(input,which(input==0.1))
+          res<-sum(innersum(out[[1]]),0.1*out[[2]])
+        }
+        else  res<-innersum(input)
+        return(res)
       }
-      wanqian<-calculate_num(wanqian)
-      wanhou<-calculate_num(wanhou)
-      return(wanqian*10000+wanhou)
     }
+    #split yi
+    if (length(which(input==100000000))!=0) {
+      part<-splitat(input,which(input==100000000),ret=0)
+      return(sumit(part[[1]])*100000000+sumit(part[[2]]))
+    }
+    #split wan
+    if (length(which(input==10000))!=0) {
+      part<-splitat(input,which(input==10000),ret=0)
+      return(sumit(part[[1]])*10000+sumit(part[[2]]))
+    }
+    return(calculate_num(input))
   }
-
   #start doing
   require(Rwordseg)
   segment.options(isNumRecognition = FALSE)
@@ -255,7 +265,7 @@ codemoney<-function(input) {
   }
   else chinn<-integer(0)
   #code produce chinese part and english part
-  if (exist(chin)) out<-fenwansum(as.numeric(c(num,chinn)))
+  if (exist(chin)) out<-sumit(as.numeric(c(num,chinn)))
   else out<-num[1]
   return(out)
   segment.options(isQuantifierRecognition= TRUE)

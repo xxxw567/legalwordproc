@@ -2,7 +2,8 @@
 % Please edit documentation in R/legalwordproc_cn.R
 \name{codemoney}
 \alias{codemoney}
-\title{Translate Chinese number into Arabic number}
+\title{Translate Chinese number into Arabic number 2nd version
+Use recursive method}
 \usage{
 codemoney(input)
 }
@@ -13,7 +14,8 @@ codemoney(input)
 numeric
 }
 \description{
-Translate Chinese number into Arabic number
+Translate Chinese number into Arabic number 2nd version
+Use recursive method
 }
 \examples{
 
