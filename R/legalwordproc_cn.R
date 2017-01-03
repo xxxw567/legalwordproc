@@ -1,5 +1,5 @@
 #' Check whether a certain word is exist.
-#' @param input input chinese sentences 
+#' @param input input chinese sentences
 #' @param find find with Chinese words
 #' @return Reture Ture/False
 #' @keywords basic
@@ -22,7 +22,7 @@ ischinexist<-function(input,find){
 }
 
 #' Find the position of a certain Chinese word.
-#' @param input input chinese sentences 
+#' @param input input chinese sentences
 #' @param find find with Chinese words
 #' @return Reture number indicate the position of Chinese word, NA if not find
 #' @keywords basic
@@ -45,9 +45,9 @@ findpos<-function(input,find) {
 }
 
 #' Cut the Chinese sentences by given characters.
-#' @param input input chinese sentences 
-#' @param find  cut by which 
-#' @return as list 
+#' @param input input chinese sentences
+#' @param find  cut by which
+#' @return as list
 #' @keywords basic
 #' @author Xia Yiwei
 #' @export
@@ -80,8 +80,8 @@ cutsentence<-function(input,find) {
 
 
 #' Detech whether a given chinese word is numeric or "."
-#' @param input input chinese sentences 
-#' @return TRUE or FALSE 
+#' @param input input chinese sentences
+#' @return TRUE or FALSE
 #' @keywords basic
 #' @author Xia Yiwei
 #' @export
@@ -92,7 +92,7 @@ is.num_coma<-function(input){
 }
 
 #' Translate a single Chinse Date or Chinese number into Arabic number
-#' @param input input chinese sentences 
+#' @param input input chinese sentences
 #' @return numeric
 #' @keywords ADV
 #' @author Xia Yiwei
@@ -104,18 +104,8 @@ chinntoda<-function (input) {
   if(length(input)>1) stop("more than one string detected!")
 
   #readatain gethub
-  source_GitHubData <-function(url, sep = ",", header = TRUE)
-  {
-    require(httr)
-    request <- GET(url)
-    stop_for_status(request)
-    handle <- textConnection(content(request, as = 'text'))
-    on.exit(close(handle))
-    read.table(handle, sep = sep, header = header,fileEncoding = "UTF-8")
-  }
-
-  datacorr<-source_GitHubData("https://raw.githubusercontent.com/xxxw567/legalwordproc/master/data/rdada.txt")
-
+  library("stringi")
+  datacorr$chin<-stri_unescape_unicode(datacorr$chin)
   datacorr[,1]<-as.integer(datacorr[,1])
   #check whether is NA or not even exist
   exist<-function(input){
@@ -137,8 +127,8 @@ chinntoda<-function (input) {
 }
 
 #' Cut a chinese sentence based on a given start and end
-#' @param input input chinese sentences 
-#' @param start starting words 
+#' @param input input chinese sentences
+#' @param start starting words
 #' @param end ending words
 #' @return list
 #' @keywords ADV
