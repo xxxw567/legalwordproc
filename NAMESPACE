@@ -3,6 +3,7 @@
 export(chinntoda)
 export(cnextract)
 export(codemoney)
+export(codemoneyv)
 export(cutsentence)
 export(findpos)
 export(is.num_coma)

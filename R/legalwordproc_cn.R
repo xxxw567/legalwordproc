@@ -273,5 +273,13 @@ codemoney<-function(input) {
   options(warn=0)
 }
 
-
-
+#' Translate Chinese number into Arabic number vectorize verison
+#' Use recursive method
+#' @param input formatted Chinese numer
+#' @return numeric
+#' @keywords ADV
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
+codemoneyv<-Vectorize(codemoney)
