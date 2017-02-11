@@ -23,8 +23,36 @@ install_github("xxxw567/legalwordproc")
 library(legalwordproc)
 
 ############################
-#recode
-# ap<-c(0,stri_escape_unicode("é›¶"))
+# #recode
+# setwd(site)
+# 
+# ap<-rbind(c(1,stri_escape_unicode("ÁãÒ»¸ö")),
+#           c(1,stri_escape_unicode("ÁãÒ»")),
+#           c(2,stri_escape_unicode("ÁãÁ½¸ö")),
+#           c(2,stri_escape_unicode("ÁãÁ½")),
+#           c(2,stri_escape_unicode("Áã¶þ¸ö")),
+#           c(2,stri_escape_unicode("Áã¶þ")),
+#           c(3,stri_escape_unicode("ÁãÈý¸ö")),
+#           c(3,stri_escape_unicode("ÁãÈý")),
+#           c(4,stri_escape_unicode("ÁãËÄ¸ö")),
+#           c(4,stri_escape_unicode("ÁãËÄ")),
+#           c(5,stri_escape_unicode("ÁãÎå¸ö")),
+#           c(5,stri_escape_unicode("ÁãÎå")),
+#           c(6,stri_escape_unicode("ÁãÁù¸ö")),
+#           c(6,stri_escape_unicode("ÁãÁù")),
+#           c(7,stri_escape_unicode("ÁãÆß¸ö")),
+#           c(7,stri_escape_unicode("ÁãÆß")),
+#           c(8,stri_escape_unicode("Áã°Ë¸ö")),
+#           c(8,stri_escape_unicode("Áã°Ë")),
+#           c(9,stri_escape_unicode("Áã¾Å¸ö")),
+#           c(9,stri_escape_unicode("Áã¾Å")),
+#           c(10,stri_escape_unicode("ÁãÊ®¸ö")),
+#           c(10,stri_escape_unicode("ÁãÊ®")),
+#           c(11,stri_escape_unicode("ÁãÊ®Ò»¸ö")),
+#           c(11,stri_escape_unicode("ÁãÊ®Ò»"))
+#           )
+# colnames(ap)<-colnames(datacorr)
+# load("data/datacorr.rda")
 # datacorr<-rbind(datacorr,ap)
 # save(datacorr,file="data/datacorr.rda",compress=TRUE)
 # datacorr$chin<-stri_unescape_unicode(datacorr$chin)
