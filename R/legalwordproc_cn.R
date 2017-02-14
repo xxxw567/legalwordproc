@@ -314,17 +314,42 @@ detectnegative<-function(input){
 #' Cut sentence based on given characters vector A and keep the sentences contains vector B
 #' @param input formatted Chinese numer
 #' @param findit sentence seperator
-#' @param sep sentence seperator sep=c("£¬","¡£")
+#' @param sep sentence seperator sep= comma, dot
 #' @keywords ADV
 #' @author Xia Yiwei
 #' @export
 #' @examples
 #'
-keepselect<-function(input,findit,sep=c("£¬","¡£")){
-  sep<-stri_unescape_unicode(c("\\uff0c","\\u3002"))
+keepselect<-function(input,findit,sep=c(",",".")){
   cutresult<-cutsentence(input,sep)
   exist<- sapply(cutresult,function(x){all(ischinexist(x,findit))})
   bothcon<-cutresult[which(exist %in% TRUE)]
   y <- sapply(bothcon, paste, collapse = "")
   return(y)
 }
+
+#' Code the legal factor.the logic is extract sentences that has 
+#' certain words and it is not negative sentences
+#' @param input formatted Chinese numer
+#' @param findit sentence seperator
+#' @param sep sentence seperator sep= comma dot
+#' @keywords ADV
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
+codevar<-function(input,findit,sep=c(",",".")){
+  temp<-as.character(input)
+  if (length(temp)==0 | is.na(temp)) re<-NA
+  else {
+    civilwords<-findit
+    insertWords(civilwords)
+    bothcon<-keepselect(temp,findit)
+    if (any(length(bothcon)==0,is.na(bothcon))) re<-0
+    else {
+      re<-as.numeric(!any(sapply(bothcon,detectnegative)))
+    }
+  }
+  return(re)
+}
+

@@ -4,14 +4,14 @@
 \alias{keepselect}
 \title{Cut sentence based on given characters vector A and keep the sentences contains vector B}
 \usage{
-keepselect(input, findit, sep = c("<U+00A3><U+00AC>", "<U+00A1><U+00A3>"))
+keepselect(input, findit, sep = c(",", "."))
 }
 \arguments{
 \item{input}{formatted Chinese numer}
 
 \item{findit}{sentence seperator}
 
-\item{sep}{sentence seperator sep=c("£¬","¡£")}
+\item{sep}{sentence seperator sep= comma, dot}
 }
 \description{
 Cut sentence based on given characters vector A and keep the sentences contains vector B
