@@ -11,7 +11,7 @@ keepselect(input, findit, sep = c("<U+00A3><U+00AC>", "<U+00A1><U+00A3>"))
 
 \item{findit}{sentence seperator}
 
-\item{sep}{sentence seperator}
+\item{sep}{sentence seperator sep=c("£¬","¡£")}
 }
 \description{
 Cut sentence based on given characters vector A and keep the sentences contains vector B

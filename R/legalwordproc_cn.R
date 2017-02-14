@@ -328,5 +328,5 @@ keepselect<-function(input,findit,sep=c("£¬","¡£")){
   cutresult<-cutsentence(input,sep)
   exist<- sapply(cutresult,function(x){all(ischinexist(x,findit))})
   bothcon<-cutresult[which(exist %in% TRUE)]
-  return(bothcon)
+  return(paste(bothcon,sep=""))
 }
