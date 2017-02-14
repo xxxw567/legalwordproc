@@ -4,12 +4,12 @@
 \alias{cutsentence}
 \title{Cut the Chinese sentences by given characters.}
 \usage{
-cutsentence(input, find)
+cutsentence(input, findit)
 }
 \arguments{
 \item{input}{input chinese sentences}
 
-\item{find}{cut by which}
+\item{findit}{cut by which}
 }
 \value{
 as list

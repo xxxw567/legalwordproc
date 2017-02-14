@@ -4,12 +4,12 @@
 \alias{ischinexist}
 \title{Check whether a certain word is exist.}
 \usage{
-ischinexist(input, find)
+ischinexist(input, findit)
 }
 \arguments{
 \item{input}{input chinese sentences}
 
-\item{find}{find with Chinese words}
+\item{findit}{findit with Chinese words}
 }
 \value{
 Reture Ture/False

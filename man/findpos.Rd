@@ -4,12 +4,12 @@
 \alias{findpos}
 \title{Find the position of a certain Chinese word.}
 \usage{
-findpos(input, find)
+findpos(input, findit)
 }
 \arguments{
 \item{input}{input chinese sentences}
 
-\item{find}{find with Chinese words}
+\item{findit}{findit with Chinese words}
 }
 \value{
 Reture number indicate the position of Chinese word, NA if not find

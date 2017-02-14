@@ -1,6 +1,6 @@
 #' Check whether a certain word is exist.
 #' @param input input chinese sentences
-#' @param find find with Chinese words
+#' @param findit findit with Chinese words
 #' @return Reture Ture/False
 #' @keywords basic
 #' @author Xia Yiwei
@@ -8,22 +8,22 @@
 #' @examples
 #'
 
-ischinexist<-function(input,find){
+ischinexist<-function(input,findit){
   #load package
   library(Rwordseg)
-  insertWords(find)
+  insertWords(findit)
   #do
   temp<-matrix(segmentCN(as.character(input),nature=TRUE,nosymbol = FALSE))
-  re<-which(find %in% temp)>0
+  re<-which(findit %in% temp)>0
   if (length(re)==0) re<-FALSE
   #end
-  deleteWords(find)
+  deleteWords(findit)
   return(re)
 }
 
 #' Find the position of a certain Chinese word.
 #' @param input input chinese sentences
-#' @param find find with Chinese words
+#' @param findit findit with Chinese words
 #' @return Reture number indicate the position of Chinese word, NA if not find
 #' @keywords basic
 #' @author Xia Yiwei
@@ -32,34 +32,34 @@ ischinexist<-function(input,find){
 #'
 
 
-findpos<-function(input,find) {
+findpos<-function(input,findit) {
   #load package
   library(Rwordseg)
-  insertWords(find)
+  insertWords(findit)
   #do
   temp<-matrix(segmentCN(as.character(input),nature=TRUE,nosymbol = FALSE))
-  pos<-which(temp %in%  find )
+  pos<-which(temp %in%  findit )
   #end
-  deleteWords(find)
+  deleteWords(findit)
   return(pos)
 }
 
 #' Cut the Chinese sentences by given characters.
 #' @param input input chinese sentences
-#' @param find  cut by which
+#' @param findit  cut by which
 #' @return as list
 #' @keywords basic
 #' @author Xia Yiwei
 #' @export
 #' @examples
 #'
-cutsentence<-function(input,find) {
+cutsentence<-function(input,findit) {
   #load package
   library(Rwordseg)
-  insertWords(find)
+  insertWords(findit)
   #do
-  pos<-findpos(input,find)
-  if (length(pos)==0) re<-NA
+  pos<-findpos(input,findit)
+  if (length(pos)==0) re<-input
   else {
     nsplit<-length(pos)+1
     temp<-matrix(segmentCN(as.character(input),nature=TRUE,nosymbol = FALSE))
@@ -74,7 +74,7 @@ cutsentence<-function(input,find) {
     }
   }
   #end
-  deleteWords(find)
+  deleteWords(findit)
   return(re)
 }
 
@@ -312,4 +312,21 @@ detectnegative<-function(input){
   ascinput<-stri_escape_unicode(input)
   nega<-grepl(negativewords, ascinput)
   return(nega)
+}
+
+#' Cut sentence based on given characters vector A and keep the sentences contains vector B
+#' @param input formatted Chinese numer
+#' @param sep sentence seperator
+#' @param findit sentence seperator
+#' @return numeric
+#' @keywords ADV
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
+detectnegative<-function(input,findit,sep=c("£¬","¡£")){
+  cutresult<-cutsentence(input,sep)
+  exist<- sapply(cutresult,function(x){all(ischinexist(findit))})
+  bothcon<-cutresult[which(exist %in% TRUE)]
+  return(bothcon)
 }
