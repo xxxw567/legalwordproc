@@ -285,10 +285,7 @@ codemoney<-function(input) {
 codemoneyv<-Vectorize(codemoney)
 
 #' Detect whether there is negative adverb in Chinese sentence
-#' 不、非、无、未、不曾、没、没有、请勿、不用、无须、并非、毫无、决不、休想、
-#' 永不、不要、未尝、未曾、毋、莫、从不、从未、从未有过、尚未、一无、并未、尚无、
-#' 从来不、从没、绝非、远非、切莫、永不、休想、绝不、毫不、不必、禁止、忌、拒绝、
-#' 杜绝、否、弗、木有
+#' 
 #' @param input formatted Chinese numer
 #' @return numeric
 #' @keywords ADV
@@ -328,5 +325,6 @@ keepselect<-function(input,findit,sep=c("，","。")){
   cutresult<-cutsentence(input,sep)
   exist<- sapply(cutresult,function(x){all(ischinexist(x,findit))})
   bothcon<-cutresult[which(exist %in% TRUE)]
-  return(paste(bothcon,sep=""))
+  y <- sapply(bothcon, paste, collapse = "")
+  return(y)
 }
