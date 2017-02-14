@@ -324,6 +324,7 @@ detectnegative<-function(input){
 #' @examples
 #'
 keepselect<-function(input,findit,sep=c("£¬","¡£")){
+  sep<-stri_unescape_unicode(c("\\uff0c","\\u3002"))
   cutresult<-cutsentence(input,sep)
   exist<- sapply(cutresult,function(x){all(ischinexist(x,findit))})
   bothcon<-cutresult[which(exist %in% TRUE)]
