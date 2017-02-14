@@ -8,22 +8,12 @@
 从来不、从没、绝非、远非、切莫、永不、休想、绝不、毫不、不必、禁止、忌、拒绝、
 杜绝、否、弗、木有}
 \usage{
-detectnegative(input, findit, sep = c("<U+00A3><U+00AC>", "<U+00A1><U+00A3>"))
-
-detectnegative(input, findit, sep = c("<U+00A3><U+00AC>", "<U+00A1><U+00A3>"))
+detectnegative(input)
 }
 \arguments{
 \item{input}{formatted Chinese numer}
-
-\item{findit}{sentence seperator}
-
-\item{sep}{sentence seperator}
-
-\item{input}{formatted Chinese numer}
 }
 \value{
-numeric
-
 numeric
 }
 \description{
@@ -32,16 +22,11 @@ Detect whether there is negative adverb in Chinese sentence
 永不、不要、未尝、未曾、毋、莫、从不、从未、从未有过、尚未、一无、并未、尚无、
 从来不、从没、绝非、远非、切莫、永不、休想、绝不、毫不、不必、禁止、忌、拒绝、
 杜绝、否、弗、木有
-
-Cut sentence based on given characters vector A and keep the sentences contains vector B
 }
 \examples{
 
-
 }
 \author{
-Xia Yiwei
-
 Xia Yiwei
 }
 \keyword{ADV}

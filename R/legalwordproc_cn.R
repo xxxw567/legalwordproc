@@ -316,17 +316,16 @@ detectnegative<-function(input){
 
 #' Cut sentence based on given characters vector A and keep the sentences contains vector B
 #' @param input formatted Chinese numer
-#' @param sep sentence seperator
 #' @param findit sentence seperator
-#' @return numeric
+#' @param sep sentence seperator
 #' @keywords ADV
 #' @author Xia Yiwei
 #' @export
 #' @examples
 #'
-detectnegative<-function(input,findit,sep=c("£¬","¡£")){
+keepselect<-function(input,findit,sep=c("£¬","¡£")){
   cutresult<-cutsentence(input,sep)
-  exist<- sapply(cutresult,function(x){all(ischinexist(findit))})
+  exist<- sapply(cutresult,function(x){all(ischinexist(x,findit))})
   bothcon<-cutresult[which(exist %in% TRUE)]
   return(bothcon)
 }
