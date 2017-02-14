@@ -317,7 +317,7 @@ detectnegative<-function(input){
 #' Cut sentence based on given characters vector A and keep the sentences contains vector B
 #' @param input formatted Chinese numer
 #' @param findit sentence seperator
-#' @param sep sentence seperator
+#' @param sep sentence seperator sep=c("£¬","¡£")
 #' @keywords ADV
 #' @author Xia Yiwei
 #' @export
