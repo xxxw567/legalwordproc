@@ -54,6 +54,8 @@ Find the position of a certain Chinese word.
 * is.num_coma	  
 Detech whether a given chinese word is numeric or "."   * ischinexist  	 
 Check whether a certain word is exist.  
+* detectnegative 
+Detect whether there exist negative words 
 
 ### Some examples
 * Cut a chinese sentence based on a given start and end 

@@ -283,3 +283,33 @@ codemoney<-function(input) {
 #' @examples
 #'
 codemoneyv<-Vectorize(codemoney)
+
+#' Detect whether there is negative adverb in Chinese sentence
+#' 不、非、无、未、不曾、没、没有、请勿、不用、无须、并非、毫无、决不、休想、
+#' 永不、不要、未尝、未曾、毋、莫、从不、从未、从未有过、尚未、一无、并未、尚无、
+#' 从来不、从没、绝非、远非、切莫、永不、休想、绝不、毫不、不必、禁止、忌、拒绝、
+#' 杜绝、否、弗、木有
+#' @param input formatted Chinese numer
+#' @return numeric
+#' @keywords ADV
+#' @author Xia Yiwei
+#' @export
+#' @examples
+#'
+detectnegative<-function(input){
+  negativewords<-c("\\u4e0d|\\u672a|\\u6ca1\\u6709|\\u65e0\\u987b|
+                   \\u51b3\\u4e0d|\\u4e0d\\u8981|\\u6bcb|\\u4ece\\u672a|
+                   \\u4e00\\u65e0|\\u4ece\\u6765\\u4e0d|\\u8fdc\\u975e|\\u4f11\\u60f3|
+                   \\u4e0d\\u5fc5|\\u62d2\\u7edd|\\u5f17|\\u975e|\\u4e0d\\u66fe|
+                   \\u8bf7\\u52ff|\\u5e76\\u975e|\\u4f11\\u60f3|\\u672a\\u5c1d|
+                   \\u83ab|\\u4ece\\u672a\\u6709\\u8fc7|\\u5e76\\u672a|\\u4ece\\u6ca1|
+                   \\u5207\\u83ab|\\u7edd\\u4e0d|\\u7981\\u6b62|\\u675c\\u7edd|
+                   \\u6728\\u6709|\\u65e0|\\u6ca1|\\u4e0d\\u7528|\\u6beb\\u65e0|
+                   \\u6c38\\u4e0d|\\u672a\\u66fe|\\u4ece\\u4e0d|\\u5c1a\\u672a|
+                   \\u5c1a\\u65e0|\\u7edd\\u975e|\\u6c38\\u4e0d|\\u6beb\\u4e0d|
+                   \\u5fcc|\\u5426")
+  library("stringi")
+  ascinput<-stri_escape_unicode(input)
+  nega<-grepl(negativewords, ascinput)
+  return(nega)
+}

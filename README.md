@@ -51,6 +51,7 @@ See the ?functions for more details
 -   is.num\_coma
     Detech whether a given chinese word is numeric or "." \* ischinexist
     Check whether a certain word is exist.
+-   detectnegative Detect whether there exist negative words
 
 ### Some examples
 
