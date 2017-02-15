@@ -345,7 +345,7 @@ codevar<-function(input,findit,sep=c(",",".")){
   else {
     civilwords<-findit
     insertWords(civilwords)
-    bothcon<-keepselect(temp,findit)
+    bothcon<-keepselect(temp,findit,sep)
     if (any(length(bothcon)==0,is.na(bothcon))) re<-0
     else {
       re<-as.numeric(!any(sapply(bothcon,detectnegative)))
