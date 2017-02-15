@@ -339,6 +339,7 @@ keepselect<-function(input,findit,sep=c(",",".")){
 #' @examples
 #'
 codevar<-function(input,findit,sep=c(",",".")){
+  library(Rwordseg)
   temp<-as.character(input)
   if (length(temp)==0 | is.na(temp)) re<-NA
   else {
