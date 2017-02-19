@@ -1,6 +1,7 @@
 #' Check whether a certain word is exist.
 #' @param input input chinese sentences
 #' @param findit findit with Chinese words
+#' @param segword whether to use segword function
 #' @return Reture Ture/False
 #' @keywords basic
 #' @author Xia Yiwei
@@ -8,16 +9,23 @@
 #' @examples
 #'
 
-ischinexist<-function(input,findit){
-  #load package
-  library(Rwordseg)
-  insertWords(findit)
-  #do
-  temp<-matrix(segmentCN(as.character(input),nature=TRUE,nosymbol = FALSE))
-  re<-which(findit %in% temp)>0
-  if (length(re)==0) re<-FALSE
-  #end
-  deleteWords(findit)
+ischinexist<-function(input,findit,segword=TRUE){
+  if (segword) {
+    #load package
+    library(Rwordseg)
+    insertWords(findit)
+    #do
+    temp<-matrix(segmentCN(as.character(input),nature=TRUE,nosymbol = FALSE))
+    re<-which(findit %in% temp)>0
+    if (length(re)==0) re<-FALSE
+    #end
+    deleteWords(findit)
+    return(re)
+  }
+    library("stringi")
+  inputasc<-stri_escape_unicode(input)
+  finditasc<-stri_escape_unicode(findit)
+  re<-grepl(finditasc, inputasc,fixed=TRUE)
   return(re)
 }
 
