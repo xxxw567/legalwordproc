@@ -5,7 +5,7 @@
 \title{Code the legal factor.the logic is extract sentences that has 
 certain words and it is not negative sentences}
 \usage{
-codevar(input, findit, sep = c(",", "."))
+codevar(input, findit, sep = c(",", "."), detectneg = TRUE)
 }
 \arguments{
 \item{input}{formatted Chinese numer}
@@ -13,6 +13,8 @@ codevar(input, findit, sep = c(",", "."))
 \item{findit}{sentence seperator}
 
 \item{sep}{sentence seperator sep= comma dot}
+
+\item{detectneg}{whether to turn on detect negative function}
 }
 \description{
 Code the legal factor.the logic is extract sentences that has 

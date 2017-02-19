@@ -4,12 +4,14 @@
 \alias{ischinexist}
 \title{Check whether a certain word is exist.}
 \usage{
-ischinexist(input, findit)
+ischinexist(input, findit, segword = TRUE)
 }
 \arguments{
 \item{input}{input chinese sentences}
 
 \item{findit}{findit with Chinese words}
+
+\item{segword}{whether to use segword function}
 }
 \value{
 Reture Ture/False

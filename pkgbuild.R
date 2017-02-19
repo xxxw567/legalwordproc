@@ -12,7 +12,6 @@ roxygenize(site)
 load_all(site)
 test(site)
 document(site)
-
 #check
 check(site)
 
@@ -57,5 +56,8 @@ library(legalwordproc)
 # save(datacorr,file="data/datacorr.rda",compress=TRUE)
 # datacorr$chin<-stri_unescape_unicode(datacorr$chin)
 # datacorr$chin<-stri_escape_unicode(datacorr$chin)
+
+
+
 
 

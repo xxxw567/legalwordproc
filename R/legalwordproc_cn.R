@@ -341,12 +341,13 @@ keepselect<-function(input,findit,sep=c(",",".")){
 #' @param input formatted Chinese numer
 #' @param findit sentence seperator
 #' @param sep sentence seperator sep= comma dot
+#' @param detectneg whether to turn on detect negative function
 #' @keywords ADV
 #' @author Xia Yiwei
 #' @export
 #' @examples
 #'
-codevar<-function(input,findit,sep=c(",",".")){
+codevar<-function(input,findit,sep=c(",","."),detectneg=TRUE){
   library(Rwordseg)
   temp<-as.character(input)
   if (length(temp)==0 | is.na(temp)) re<-NA
@@ -356,9 +357,13 @@ codevar<-function(input,findit,sep=c(",",".")){
     bothcon<-keepselect(temp,findit,sep)
     if (any(length(bothcon)==0,is.na(bothcon))) re<-0
     else {
-      re<-as.numeric(!any(sapply(bothcon,detectnegative)))
+      if (detectneg)re<-as.numeric(!any(sapply(bothcon,detectnegative)))
+      else re<-1
     }
   }
   return(re)
 }
+
+
+
 
