@@ -173,7 +173,7 @@ cnextract<-function (input,start,end) {
 
 #' Translate Chinese number into Arabic number 2nd version
 #' Use recursive method
-#' @param input formatted Chinese numer
+#' @param input formatted Chinese number
 #' @return numeric
 #' @keywords ADV
 #' @author Xia Yiwei
